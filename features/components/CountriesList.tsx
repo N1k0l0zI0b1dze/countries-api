@@ -20,7 +20,7 @@ const CountriesList = () => {
           className="flex h-84 w-66 flex-col overflow-hidden rounded-[5px] border border-[#e5e5e5] bg-white shadow-[0px_4px_16px_0px_rgba(0,0,0,0.08)]"
           key={country.alpha3Code}
         >
-          <div className="relative h-40 w-full overflow-hidden">
+          <div className="relative h-40 w-full overflow-hidden border-b border-[#e5e5e5] bg-white shadow-[0px_4px_16px_0px_rgba(0,0,0,0.08)]">
             <Image
               src={country.flags.svg}
               alt={country.name}
