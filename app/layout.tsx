@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
+import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import { QueryProvider } from "@/query/QueryProvider";
 import Header from "@/features/components/Header";
+import { ThemeProvider } from "@/src/components/theme-provider";
+
+const nunitoSans = Nunito_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "600", "700", "800"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,12 +21,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="min-h-screen bg-[#f2f2f2]">
-        <QueryProvider>
-          <Header />
-          {children}
-        </QueryProvider>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${nunitoSans.className} min-h-screen bg-[#f2f2f2] text-[#111517] dark:bg-[#202c37] dark:text-white`}
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <QueryProvider>
+            <Header />
+            {children}
+          </QueryProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
