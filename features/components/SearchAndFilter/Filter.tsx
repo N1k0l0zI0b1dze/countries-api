@@ -38,7 +38,7 @@ const Filter = () => {
       </button>
 
       {filter && (
-        <div className="absolute left-0 top-14 flex w-50 flex-col gap-2 rounded-[5px] bg-white p-4 text-[#111517] shadow-[0px_4px_16px_0px_rgba(0,0,0,0.08)] dark:bg-[#2b3945] dark:text-white md:left-auto md:right-0 md:top-16">
+        <div className="absolute left-0 top-14 z-50 flex w-50 flex-col gap-2 rounded-[5px] bg-white p-4 text-[#111517] shadow-[0px_4px_16px_0px_rgba(0,0,0,0.08)] dark:bg-[#2b3945] dark:text-white md:left-auto md:right-0 md:top-16">
           {regionOptions.map((option) => (
             <button
               key={option.value}

@@ -1,5 +1,94 @@
+"use client";
+
+import { getCountries } from "@/src/api/countriesApi";
+import { useQuery } from "@tanstack/react-query";
+import Image from "next/image";
+import { useState } from "react";
+
 const CountriesPagination = () => {
-  return <div className=""></div>;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["countries"],
+    queryFn: getCountries,
+  });
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error...</p>;
+
+  const itemsPerPage = 8;
+
+  const totalPages = Math.ceil((data?.length ?? 0) / itemsPerPage);
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = currentPage * itemsPerPage;
+
+  const currentItems = data?.slice(startIndex, endIndex);
+
+  return (
+    <section className="mt-20 flex h-auto w-66.25 flex-col items-center md:mt-26 md:w-150 lg:mt-10 lg:w-318">
+      <div className="grid w-full grid-cols-1 place-items-center md:grid-cols-2 gap-10 md:gap-18 lg:grid-cols-4">
+        {currentItems?.map((country) => (
+          <div
+            className="flex h-84 w-66 flex-col overflow-hidden rounded-[5px] border border-[#e5e5e5] bg-white shadow-[0px_4px_16px_0px_rgba(0,0,0,0.08)] dark:border-transparent dark:bg-[#2b3945] dark:text-white dark:shadow-[0px_4px_16px_0px_rgba(0,0,0,0.2)]"
+            key={country.alpha3Code}
+          >
+            <div className="relative h-40 w-full overflow-hidden border-b border-[#e5e5e5] bg-white dark:border-transparent dark:bg-[#2b3945]">
+              <Image
+                src={country.flags.svg}
+                alt={country.name}
+                fill
+                className="object-cover"
+              />
+            </div>
+
+            <div className="mt-5.5 ml-6">
+              <h2 className="mb-4 text-[18px] font-extrabold">
+                {country.name}
+              </h2>
+
+              <p className="text-[14px]">
+                <span className="font-medium">Population:</span>{" "}
+                {country.population}
+              </p>
+
+              <p className="text-[14px]">
+                <span className="font-medium">Region:</span> {country.region}
+              </p>
+
+              <p>
+                <span className="font-medium">Capital:</span> {country.capital}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-10 flex items-center justify-center gap-4">
+        <button
+          type="button"
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+
+        <span>
+          Page {currentPage} of {totalPages}
+        </span>
+
+        <button
+          type="button"
+          onClick={() =>
+            setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+          }
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
+      </div>
+    </section>
+  );
 };
 
 export default CountriesPagination;
