@@ -30,7 +30,7 @@ const CountriesPagination = () => {
       <div className="grid w-full grid-cols-1 place-items-center md:grid-cols-2 gap-10 md:gap-18 lg:grid-cols-4">
         {currentItems?.map((country) => (
           <div
-            className="flex h-84 w-66 flex-col overflow-hidden rounded-[5px] border border-[#e5e5e5] bg-white shadow-[0px_4px_16px_0px_rgba(0,0,0,0.08)] dark:border-transparent dark:bg-[#2b3945] dark:text-white dark:shadow-[0px_4px_16px_0px_rgba(0,0,0,0.2)]"
+            className="flex h-84 w-66 cursor-pointer flex-col overflow-hidden rounded-[5px] border border-[#e5e5e5] bg-white shadow-[0px_4px_16px_0px_rgba(0,0,0,0.08)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0px_8px_24px_0px_rgba(0,0,0,0.12)] dark:border-transparent dark:bg-[#2b3945] dark:text-white dark:shadow-[0px_4px_16px_0px_rgba(0,0,0,0.2)] dark:hover:shadow-[0px_8px_24px_0px_rgba(0,0,0,0.35)]"
             key={country.alpha3Code}
           >
             <div className="relative h-40 w-full overflow-hidden border-b border-[#e5e5e5] bg-white dark:border-transparent dark:bg-[#2b3945]">
@@ -69,6 +69,7 @@ const CountriesPagination = () => {
           type="button"
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
+          className="rounded-[5px] border border-[#e5e5e5] bg-white px-4 py-2 text-[14px] font-semibold text-[#111517] shadow-[0px_4px_16px_0px_rgba(0,0,0,0.08)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#f8f8f8] hover:shadow-[0px_8px_24px_0px_rgba(0,0,0,0.12)] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:translate-y-0 disabled:hover:bg-white disabled:hover:shadow-[0px_4px_16px_0px_rgba(0,0,0,0.08)] dark:border-transparent dark:bg-[#2b3945] dark:text-white dark:hover:bg-[#334756] dark:hover:shadow-[0px_8px_24px_0px_rgba(0,0,0,0.35)] dark:disabled:hover:bg-[#2b3945]"
         >
           Previous
         </button>
@@ -83,6 +84,7 @@ const CountriesPagination = () => {
             setCurrentPage((prev) => Math.min(prev + 1, totalPages))
           }
           disabled={currentPage === totalPages}
+          className="rounded-[5px] border border-[#e5e5e5] bg-white px-4 py-2 text-[14px] font-semibold text-[#111517] shadow-[0px_4px_16px_0px_rgba(0,0,0,0.08)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#f8f8f8] hover:shadow-[0px_8px_24px_0px_rgba(0,0,0,0.12)] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:translate-y-0 disabled:hover:bg-white disabled:hover:shadow-[0px_4px_16px_0px_rgba(0,0,0,0.08)] dark:border-transparent dark:bg-[#2b3945] dark:text-white dark:hover:bg-[#334756] dark:hover:shadow-[0px_8px_24px_0px_rgba(0,0,0,0.35)] dark:disabled:hover:bg-[#2b3945]"
         >
           Next
         </button>

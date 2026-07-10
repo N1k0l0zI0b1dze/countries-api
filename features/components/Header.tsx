@@ -13,7 +13,7 @@ const Header = () => {
   };
 
   return (
-    <header className="flex h-20 w-full items-center justify-center bg-white shadow-[0px_4px_16px_0px_rgba(0,0,0,0.08)] dark:bg-[#2b3945] md:h-24">
+    <header className="sticky top-0 z-50 flex h-20 w-full items-center justify-center bg-white shadow-[0px_4px_16px_0px_rgba(0,0,0,0.08)] dark:bg-[#2b3945] md:h-24">
       <div className="flex w-full max-w-7xl items-center justify-between px-4 md:px-8 lg:px-0">
         <h1 className="text-[18px] font-extrabold leading-none text-[#111517] dark:text-white md:text-[22px] lg:text-[24px]">
           Where in the world?
