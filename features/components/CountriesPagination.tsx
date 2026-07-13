@@ -4,6 +4,7 @@ import { getCountries } from "@/src/api/countriesApi";
 import { Region } from "@/src/types/filter.types";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 type CountriesPaginationProps = {
@@ -47,7 +48,8 @@ const CountriesPagination = ({ selectedRegion }: CountriesPaginationProps) => {
       <div className="grid w-full grid-cols-1 place-items-center gap-10 md:grid-cols-2 md:gap-18 lg:grid-cols-4">
         {currentItems && currentItems.length > 0 ? (
           currentItems.map((country) => (
-            <div
+            <Link
+              href={`/countries/${country.alpha3Code}`}
               className="flex h-84 w-66 cursor-pointer flex-col overflow-hidden rounded-[5px] border border-[#e5e5e5] bg-white shadow-[0px_4px_16px_0px_rgba(0,0,0,0.08)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0px_8px_24px_0px_rgba(0,0,0,0.12)] dark:border-transparent dark:bg-[#2b3945] dark:text-white dark:shadow-[0px_4px_16px_0px_rgba(0,0,0,0.2)] dark:hover:shadow-[0px_8px_24px_0px_rgba(0,0,0,0.35)]"
               key={country.alpha3Code}
             >
@@ -79,7 +81,7 @@ const CountriesPagination = ({ selectedRegion }: CountriesPaginationProps) => {
                   {country.capital}
                 </p>
               </div>
-            </div>
+            </Link>
           ))
         ) : (
           <p className="text-[16px] font-semibold text-[#111517] dark:text-white">
