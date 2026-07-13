@@ -76,7 +76,7 @@ const CountriesPagination = ({ selectedRegion }: CountriesPaginationProps) => {
                   <span className="font-medium">Region:</span> {country.region}
                 </p>
 
-                <p>
+                <p className="text-[14px]">
                   <span className="font-medium">Capital:</span>{" "}
                   {country.capital}
                 </p>
