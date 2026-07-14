@@ -70,7 +70,7 @@ const CountryPage = async ({ params }: CountryPageProps) => {
                 {country.name}
               </h2>
 
-              <div className="mt-4 lg:mt-6 flex flex-col gap-8 lg:flex-row lg:gap-20">
+              <div className="mt-4 flex flex-col gap-8 lg:mt-6 lg:flex-row lg:gap-20">
                 <div>
                   <p className="text-[14px]">
                     <span className="font-medium">Native Name:</span>{" "}
@@ -117,6 +117,36 @@ const CountryPage = async ({ params }: CountryPageProps) => {
                       ?.map((language) => language.name)
                       .join(", ")}
                   </p>
+                </div>
+              </div>
+
+              <div className="mt-8 flex flex-col gap-4 lg:mt-18 lg:flex-row">
+                <h2 className="shrink-0 text-[16px] font-semibold text-gray-950 dark:text-white">
+                  Border Countries:
+                </h2>
+
+                <div className="flex flex-wrap gap-4">
+                  {country.borders && country.borders.length > 0 ? (
+                    country.borders.map((border) => {
+                      const borderCountry = countries.find(
+                        (country) => country.alpha3Code === border,
+                      );
+
+                      return (
+                        <Link
+                          key={border}
+                          href={`/countries/${border}`}
+                          className="flex h-7 w-auto items-center justify-center whitespace-nowrap rounded-[5px] border border-[#e5e5e5] bg-white px-4 text-[14px] font-semibold text-[#111517] shadow-[0px_4px_16px_0px_rgba(0,0,0,0.08)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#f8f8f8] hover:shadow-[0px_8px_24px_0px_rgba(0,0,0,0.12)] dark:border-transparent dark:bg-[#2b3945] dark:text-white dark:hover:bg-[#334756] dark:hover:shadow-[0px_8px_24px_0px_rgba(0,0,0,0.35)]"
+                        >
+                          {borderCountry?.name ?? border}
+                        </Link>
+                      );
+                    })
+                  ) : (
+                    <span className="text-[14px] font-semibold text-[#111517] dark:text-white">
+                      None
+                    </span>
+                  )}
                 </div>
               </div>
             </div>
